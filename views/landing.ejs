@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cred Saver: The ultimate credentials saving app</title>
+    <link rel="stylesheet" href="/css/landing.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>  
+        $(window).on('load', function () {  
+            $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
+        });  
+    </script> 
+</head>
+<body>
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo">
+            <span class="section-title">CredSaver</span>
+        </div>
+        <nav class="navbar">
+            <a href="/about">About Us</a>
+            <a href="/faqs">FAQs</a>
+        </nav>
+        <div class="login-signup">
+            <a href="/login" class="login">Login</a>
+            <a href="/register" class="register">Register</a>
+        </div>
+        
+        <div class="overlay" id="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <div class="logo">
+                    <span class="section-title">CredSaver</span>
+                </div>
+                <a href="/about">About Us</a>
+                <a href="/faqs">FAQs</a>
+                <div class="login-signup" style="display: flex;">
+                    <a href="/login" class="login">Login</a>
+                    <a href="/register" class="register">Register</a>
+                </div>
+                
+            </div>
+        </div>
+        <span class ="open-button" onclick="openNav()">&#9776;</span>
+
+        <script>
+            function openNav() {
+                document.getElementById("overlay").style.width = "100%";
+            }
+
+            function closeNav() {
+                document.getElementById("overlay").style.width = "0%";
+            }
+        </script>
+    </header>
+    <main>
+        <section class="introduction">
+            <div class="grid">
+                <div class="section-text right">
+                    <h1 class="section-title">
+                        What is it?
+                    </h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quia quisquam fugit vel ducimus, velit saepe, quidem obcaecati rem eos reprehenderit. Incidunt dolorem obcaecati molestias! Mollitia, consequatur sit quam vero, dolorum ratione quis esse architecto deleniti aliquid enim! Ipsa, minima! Porro voluptates tempore eligendi officia non nam, ea eveniet consequatur dolorem provident eos dicta incidunt adipisci qui obcaecati soluta voluptatum, minus sunt autem architecto! Sint tempore suscipit minima quia reprehenderit.
+                </div>
+                <div class="section-img left">
+                    <img src="/images/intro.png" alt="">
+                </div>
+            </div>
+            
+        </section>
+        <div class="wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#742fe4" fill-opacity="1" d="M0,192L80,181.3C160,171,320,149,480,154.7C640,160,800,192,960,197.3C1120,203,1280,181,1360,170.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+        </div>
+        <section class="why">
+            <div class="grid">
+                <span class="section-text left">
+                    <h1 class="section-title">
+                        Why CredSaver?
+                    </h1>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident repellendus vel voluptatum deleniti, vero veritatis saepe, maiores magni corrupti quis quas eum eligendi? Vitae at eos assumenda enim quas vero, beatae, fugiat laborum, dignissimos quasi fuga? Sit expedita sequi temporibus dolor doloribus error vero repellat harum enim culpa quibusdam voluptatem recusandae deleniti, deserunt totam itaque cumque! Quia laudantium eaque, quaerat distinctio reprehenderit veritatis impedit harum unde alias quidem dolores cumque.
+                </span>
+                <span class="section-img right">
+                    <img src="/images/encryption.png" alt="">
+                </span>
+            </div>
+        </section>
+        <div class="wave" style="background-color: #742fe4;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFE100" fill-opacity="1" d="M0,32L80,74.7C160,117,320,203,480,202.7C640,203,800,117,960,80C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+        </div>
+        <section class="introduction">
+            <div class="grid">
+                <span class="section-text right">
+                    <h1 class="section-title">
+                        Is it secure?
+                    </h1>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dignissimos excepturi, corrupti sit ex necessitatibus? Aut quibusdam recusandae iure, temporibus magnam, quis laudantium cumque est ullam delectus modi vel omnis? Saepe molestiae debitis et id rem fuga nam at iure dicta, libero consequatur voluptas minima officia nisi magni sed consequuntur consectetur similique, officiis optio! Esse ex, odit optio nisi nemo aspernatur dolorem, neque exercitationem cupiditate reiciendis aut tempore, saepe explicabo?
+                </span>
+                <span class="section-img left">
+                    <img src="/images/security.png" alt="">
+                </span>
+            </div>
+        </section>
+    </main>
+    <div class="color">
+
+    </div>
+    <footer>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo">
+        </div>
+        <div class="site-map">
+            <span class="section-title">
+                Site Map
+            </span>
+            <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/faqs">FAQs</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign Up</a></li>
+            </ul>
+        </div>
+        <div class="idea-form-wrapper">
+            <span class="section-title">Hit us with Your ideas!</span>
+            <form id="idea-form">
+                <input type="text" name="name" id="name" placeholder="Your Name">
+                <input type="email" name="mail" id="mail" placeholder="Your Email ID">
+                <textarea name="suggestion" id="suggestion" placeholder="Your suggestions or remarks"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </footer>
+</body>
+</html>

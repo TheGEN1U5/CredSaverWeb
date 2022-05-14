@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/landing.css">
+    <title>404 Not Found</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>  
+        $(window).on('load', function () {  
+            $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
+        });  
+    </script> 
+</head>
+<body style="background-color: white;">
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo">
+            <span class="section-title">CredSaver</span>
+        </div>
+        <nav class="navbar">
+            <a href="/about">About Us</a>
+            <a href="/faqs">FAQs</a>
+        </nav>
+        <div class="login-signup">
+            <a href="/login" class="login">Login</a>
+            <a href="/register" class="register">Register</a>
+        </div>
+    </header>
+    <main style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+        <h1>Looks like you are lost!</h1>
+        <div style="height: 400px;">
+            <img src="/images/404.png" alt="404 not found illustration" style="height: 100%">
+        </div>
+        <a href="/">Go to Home</a>
+    </main>
+</body>
+</html>

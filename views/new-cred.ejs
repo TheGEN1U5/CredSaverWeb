@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredSaver New Credentials</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/new-cred.css">
+    <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>  
+        $(window).on('load', function () {  
+            $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
+        });  
+    </script> 
+</head>
+<body>
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="logo" srcset="">
+        </div>
+        <!-- <div class="searchbar">
+            <input type="text" placeholder="Search My Credentials">
+            <i class="fas fa-search"></i>
+        </div> -->
+        <div class="details-wrapper">
+            <a href="/userDetails">
+                <div class="loginDetails">
+                    <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>" alt="" srcset="">
+                    <span class="email"> <%- user.email %> </span>
+                    <span class="name"> <%- user.name %> </span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-wrapper">
+            <form action="/dashboard/new-cred" method="POST">
+                <input type="text" name="siteName" id="siteName" placeholder="Site Name" required>
+                <input type="text" name="username" id="username" placeholder="Username for the site" required>
+                <input type="password" name="password" id="password" placeholder="Password for the site" required>
+                <input type="submit" value="Encrypt & Save" class="submit-btn">
+            </form>
+        </div>
+        <div class="powered-by">
+            Powered by AES-128-Encryption
+        </div>
+    </main>
+</body>
+</html>

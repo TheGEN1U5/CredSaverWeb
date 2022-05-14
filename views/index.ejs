@@ -1,0 +1,235 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredSaver</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>  
+        $(window).on('load', function () {  
+            $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
+        });  
+    </script>   
+    <script>
+        window.onload = () =>{
+            var eyeList1 = document.getElementsByClassName('fa-eye')
+            for(i=0 ; i<eyeList1.length ; i++){
+                eyeList1[i].style.display = 'inline'
+            }
+            var eyeList = document.getElementsByClassName('fa-eye-slash')
+            for(i=0 ; i<eyeList.length ; i++){
+                eyeList[i].style.display = 'none'
+            }
+            var noCred = document.getElementById('notfound')
+            noCred.style.display = 'none'
+        }
+        hideShowfunc = () => {
+            var pwdList = document.getElementsByClassName('pwdBox')
+            console.log(pwdList.length)
+            var i;
+            for(i = 0 ; i < pwdList.length ; i++){
+                console.log(i)
+                var x = pwdList[i]
+                if (x.type === "password") {
+                    x.type = "text";
+                    // style.display = 'none'
+                    var eyeList1 = document.getElementsByClassName('fa-eye')
+                    for(j=0 ; j<eyeList1.length ; j++){
+                        eyeList1[j].style.display = 'none'
+                    }
+                    var eyeList = document.getElementsByClassName('fa-eye-slash')
+                    for(j=0 ; j<eyeList.length ; j++){
+                        eyeList[j].style.display = 'inline'
+                    }
+                } else {
+                    x.type = "password";
+                    var eyeList = document.getElementsByClassName('fa-eye-slash')
+                    for(j=0 ; j<eyeList.length ; j++){
+                        eyeList[j].style.display = 'none'
+                    }
+                    var eyeList1 = document.getElementsByClassName('fa-eye')
+                    for(j=0 ; j<eyeList1.length ; j++){
+                        eyeList1[j].style.display = 'inline'
+                    }
+                }
+            }
+            
+        }
+        
+        var searchFunc = ()=>{
+            var query = document.getElementById('searchbar').value.toLowerCase()
+            var creds = document.getElementsByClassName('creds')
+            for(i=0 ; i<creds.length ; i++){
+                var text = creds[i].getElementsByClassName('sitename')[0].innerText.toLowerCase()
+                if (text.indexOf(query) > -1) {
+                    creds[i].style.display = "";
+                } else {
+                    creds[i].style.display = "none";
+                }
+            }
+            var counter = 0
+            for(i=0 ; i<creds.length ; i++){
+                if(creds[i].style.display !== 'none'){
+                    counter = 0
+                    console.log(counter)
+                }else if(creds[i].style.display == 'none'){
+                    counter++
+                    console.log(counter)
+                }
+            }
+            if(counter == creds.length){
+                var noCred = document.getElementById('notfound')
+                noCred.style.display = 'block'
+            }else{
+                var noCred = document.getElementById('notfound')
+                noCred.style.display = 'none'
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="logo" srcset="">
+        </div>
+        <div class="searchbar">
+            <input type="text" placeholder="Search My Credentials" onkeyup="searchFunc()" id="searchbar">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="details-wrapper">
+            <a href="/userDetails">
+                <div class="loginDetails">
+                    <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>" alt="" srcset="">
+                    <span class="email"> <%- user.email %> </span>
+                    <span class="name"> <%- user.name %> </span>
+                </div>
+            </a>
+        </div>
+    </header>
+    <main>
+        <p id="notfound">
+            No credentials found!
+        </p>
+        <div id="fade" class="black_overlay" style="height: 100%; position: fixed;"></div>
+        <section class="creds-list">
+            <% if(credentials.length == 0) { %>
+                <div class="no-cred">
+                    <div class="empty-image">
+                        <img src="/images/vault.png">
+                    </div>
+                    <div class="section-title">
+                        No credentials to see yet!
+                    </div>
+                    <div class="section-subtitle">
+                        Click on the <i class="fas fa-plus-circle"></i> to get started.
+                    </div>
+                </div>
+            <% } else{ %>
+                <div class="creds-wrapper">
+                    <% credentials.forEach((item, index)=>{ %>
+                        <div class="creds" onclick= "document.getElementById('<%- item.siteName %>').style.display='block'; document.getElementById('fade').style.display='block'">
+                            <div class= "icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="sitename">
+                                <%- item.siteName %>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="cred-details-wrapper">
+                    <% credentials.forEach((item, index)=>{ %>
+                        <div class="details" id="<%- item.siteName %>">
+                            <div class="site-name detail">
+                                <span class="key">
+                                    Site Name:
+                                </span>
+                                <span class="value">
+                                    <%- item.siteName %>
+                                </span>
+                            </div>
+                            <div class="username detail">
+                                <span class="key">
+                                    Username: 
+                                </span>
+                                <span class="username">
+                                    <%- item.username %> <br>
+                                </span>
+                            </div>
+                            <div class="password detail">
+                                <span class="key">
+                                    Password:
+                                </span>
+                                <span class="value" unselectable='on'>
+                                    <input type="password" name="password" id="password" class='pwdBox' value="<%- item.password %>" readonly>
+                                    <label for="show-pwd">
+                                        <i class="far fa-eye-slash"></i>
+                                        <i class="far fa-eye"></i>
+                                    </label>
+                                    <input type="checkbox" name="show-pwd" id="show-pwd" onclick="hideShowfunc()">
+                                </span>
+                            </div>
+                            
+                            <div class="actions">
+                                <form action="/dashboard/<%- item._id %>?_method=DELETE" method="post">
+                                    <button class="button delete" type="submit">
+                                        Delete Password
+                                    </button>
+                                </form>
+                                <div class="update-wrapper">
+                                    <button class="button update" onclick="window.location.href='/dashboard/update/<%- item._id %>'">
+                                        Update Credentials
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="close-wrapper">
+                                <button class="button close" onclick="document.getElementById('<%- item.siteName %>').style.display='none'; document.getElementById('fade').style.display='none'">
+                                    Close
+                                </button>
+                            </div>
+                            
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </section>
+        <section class="plus-bottom">
+            <a href="/dashboard/new-cred">
+                <div class="new-cred">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </a>
+            
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+    
+
+
+</body>
+</html>

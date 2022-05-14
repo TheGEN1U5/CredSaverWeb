@@ -1,0 +1,16 @@
+Hi <%- user.name %>
+
+<form action="/logout?_method=DELETE" method="post">
+    <button type="submit">
+        Log out
+    </button>
+</form>
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="image" id="image">
+    <input type="submit" value='Upload'>
+    <input type="text" name='id' style="display: none;" value="<%- user._id %>">
+</form>
+<h1>Uploaded Images</h1>
+<div>
+    <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>">
+</div>
