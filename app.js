@@ -145,7 +145,7 @@ async function creds(credC, allR, credD, credR , credU){
         array.forEach((object)=>{
             for (var key in object){
                 if (key !== 'type' && key !== '_id'){
-                    object[key] = decrypt(object[key] , process.env.ED_KEY , process.env.ED_IV).replace(/[\b\x07\x05\x10\x01\x02\x03\x04\x05\x06\x07\x08\x09]/g, '')
+                    object[key] = decrypt(object[key] , process.env.ED_KEY ,  process.env.ED_IV).replace(/[\b\x07\x05\x10\x01\x02\x03\x04\x05\x06\x07\x08\x09]/g, '')
                 }
             }
         })
