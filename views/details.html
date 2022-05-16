@@ -6,26 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Details</title>
     <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../public/css/details.css">
     <!-- <link rel="stylesheet" href="/css/details.css"> -->
-    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../public/css/details.css">
+    <link rel="stylesheet" href="/css/loader.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/js/loader.js"></script>
+    <link class="jsbin" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#imgUploaded').attr('src', e.target.result).width('50%').height('auto');
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <!-- <script src="/js/details.js"></script> -->
+    <script src="../public/js/details.js"></script>
 </head>
 <body>
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="sidebar">
             <div class="back">
@@ -41,11 +50,12 @@
                 <!-- <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>"> -->
                 
             </div>
-            <br><div class="name"><!-- <%- user.name %>--> Tanishq Ahuja</div>
+            <br><div class="name"> <%- user.name %></div>
             <div class="links">
                 <ul>
-                    <li><a href="#profile"><span class="icons"><i class="fa fa-user"></i></span> Profile</a></li>
-                    <li><a href="#security"><span class="icons"><i class="fa fa-shield"></i></span> Security</a></li>
+                    <li id="profile-link" class="active"><a href="#profile" onclick="makeActive('profile')"><span class="icons"><i class="fa fa-user"></i></span> Profile</a></li>
+                    <li id="security-link"><a href="#security" onclick="makeActive('security')"><span class="icons"><i class="fa fa-shield"></i></span> Security</a></li>
+                    <li id="upgrade-link"><a href="#upgrade" onclick="makeActive('upgrade')"><span class="icons"><i class="fa fa-level-up"></i></span>&nbsp; Upgrade</a></li>
                     <li>
                         <form action="/logout?_method=DELETE" method="post">
                             <a href="" onclick="this.closest('form').submit();return false;">
@@ -59,14 +69,116 @@
         <div class="main">
             <div class="profile">
                 <h1 class="heading" id="profile">Profile</h1>
-                <form action="/dashboard/updateuser/<%- cred._id %>?_method=PUT" method="POST">
-                    <label for="name">Your Name:</label><input type="text" name="name" id="name" value="<%- user.name %>">
-                    <label for="age">Your Age: </label><input type="number" name="age" id="age" value="<%- user.age %>">
-                    
+                <form action="/dashboard/updateuser/<%- user._id %>?_method=PUT" method="POST">
+                    <label for="name">Full Name: </label><input type="text" name="name" id="name" value="<%- user.name %>"><br>
+                    <label for="age">Your Age: </label><input type="number" name="age" id="age" value="<%- user.age %>"><br>
+                    <label for="email">Your Email: </label><input type="email" name="email" id="email" value="<%- user.email %>" readonly><br>
+                    <label for="gender">Your Gender:</label>
+                    <label for="male">Male</label><input type="radio" name="gender" id="male" value="male" <% if (user.gender == 'male') { %> checked <% } %> >
+                    <label for="female">Female</label><input type="radio" name="gender" id="female" value="female">
+                    <label for="other">Custom/Rather Not Say</label><input type="radio" name="gender" id="other" value="other">
+                    <input type="submit" id="submit" value="Update Profile">
+                </form>
+                
+            </div>
+            <div class="security">
+                <h1 class="heading" id="security">Security</h1>
+                <form action="/update-password-login" method="post">
+                    <label for="old_pass">Your Current Password: </label>
+                    <input type="password" name="old_pass" id="old_pass"><br>
+                    <label for="new_pass">Enter New Password: </label>
+                    <input type="password" name="new_pass" id="new_pass"><br>
+                    <label for="r_new_pass">Re-enter New Password</label>
+                    <input type="password" name="r_new_pass" id="r_new_pass"><br>
+                    <input type="text" name="mail" id="mail" value="<%- user.email %>" class="hidden">
+                    <button type="submit" readonly>Change Password</button>
                 </form>
             </div>
-            <div class="Security" id="security">
-                <h1 class="heading">Security</h1>
+            <div class="upgrade">
+                <h1 class="heading" id="upgrade">Upgrade</h1>
+                <!-- You are a member of 
+                <% if (user.tier == 'glass'){ %> 
+                    Glass (Free)
+                <% }else if (user.tier == 'bronze') { %>
+                    Bronze (Beginner)
+                <% }else if (user.tier == 'silver') { %>
+                    Silver (Premium)
+                <% }else if (user.tier == 'golden') { %>
+                    Golden (Professional)
+                <% } %>
+                Tier. -->
+                <a href="/pricing">Upgrade</a> today to get more out of CredSaver
+                <br>Compare the features of below given plans:
+                <!-- TODO:- make table here -->
+
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="empty"></th>
+                                <th>Glass</th>
+                                <th>Bronze</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="features">Annual Cost* (INR)</td>
+                                <td><strong>Free Forever</strong></td>
+                                <td class="num"><strong>&#8377; 199</strong></td>
+                                <td class="num"><strong>&#8377; 399</strong></td>
+                                <td class="num"><strong>&#8377; 699</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Number of credentials you can save</td>
+                                <td class="num">10</td>
+                                <td class="num">50</td>
+                                <td><strong>Unlimited</strong></td>
+                                <td><strong>Unlimited</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Encryption method</td>
+                                <td>AES-128bit</td>
+                                <td>AES-128bit</td>
+                                <td>AES-256bit</td>
+                                <td>AES-256bit</td>
+                            </tr>
+                            <tr>
+                                <td class="features">Change profile picture</td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Sherlocker access <i class="fa fa-info-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Unlimited credentials <i class="fa fa-info-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Custom encryption key <i class="fa fa-info-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    
+
+
             </div>
         </div>
     </div>
@@ -96,3 +208,21 @@
 
 
 
+
+
+<!-- Hi <%- user.name %>
+
+<form action="/logout?_method=DELETE" method="post">
+    <button type="submit">
+        Log out
+    </button>
+</form>
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="image" id="image">
+    <input type="submit" value='Upload'>
+    <input type="text" name='id' style="display: none;" value="<%- user._id %>">
+</form>
+<h1>Uploaded Images</h1>
+<div>
+    <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>">
+</div> -->

@@ -6,15 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Details</title>
     <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="../public/css/details.css"> -->
     <link rel="stylesheet" href="/css/details.css">
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/loader.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/js/loader.js"></script>
     <link class="jsbin" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <script src="/js/details.js"></script>
 </head>
 <body>
+    <div class="wrapper-wrapper">
+        <div class="wrapper-lock">
+            <div class="base">
+                <div class="base-bottom">
+                </div>
+                <div class="lock-inside-top">
+                </div>
+                <div class="lock-inside-bottom">
+                </div>
+            </div>
+            <div class="lock-cirlce">
+                <div class="lock-circle-inside">
+                </div>
+            </div>
+            <div class="lock-box">
+            </div>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="sidebar">
             <div class="back">
@@ -61,11 +79,23 @@
                 </form>
                 
             </div>
-            <div class="security" id="security">
-                <h1 class="heading">Security</h1>
+            <div class="security">
+                <h1 class="heading" id="security">Security</h1>
+                <form action="/update-password-login" method="post">
+                    <label for="old_pass">Your Current Password: </label>
+                    <input type="password" name="old_pass" required id="old_pass"><br>
+                    <label for="new_pass">Enter New Password: </label>
+                    <input type="password" name="new_pass" required id="new_pass" onkeyup="verifyPassword()"><br>
+                    <span class="message" id="messageV"></span><br>
+                    <label for="r_new_pass">Confirm New Password</label>
+                    <input type="password" name="r_new_pass" required id="r_new_pass" onkeyup="confirmPassword()"><br>
+                    <span class="message" id="messageC"></span><br>
+                    <input type="text" name="mail" id="mail" value="<%- user.email %>" class="hidden">
+                    <button type="submit" id="submit-btn">Change Password</button>
+                </form>
             </div>
-            <div class="upgrade" id="upgrade">
-                <h1 class="heading">Upgrade</h1>
+            <div class="upgrade">
+                <h1 class="heading" id="upgrade">Upgrade</h1>
                 You are a member of 
                 <% if (user.tier == 'glass'){ %> 
                     Glass (Free)
@@ -78,8 +108,74 @@
                 <% } %>
                 Tier.
                 <a href="/pricing">Upgrade</a> today to get more out of CredSaver
-                <br>Compare the features of below given plans:
+                <br>Compare the features of below given plans: <br><br>
                 <!-- TODO:- make table here -->
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="empty"></th>
+                                <th>Glass</th>
+                                <th>Bronze</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="features">Annual Cost* (INR)</td>
+                                <td><strong>Free Forever</strong></td>
+                                <td class="num"><strong>&#8377; 199</strong></td>
+                                <td class="num"><strong>&#8377; 399</strong></td>
+                                <td class="num"><strong>&#8377; 699</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Number of credentials you can save</td>
+                                <td class="num">10</td>
+                                <td class="num">50</td>
+                                <td><strong>Unlimited</strong></td>
+                                <td><strong>Unlimited</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Encryption method</td>
+                                <td class="num">AES-128bit</td>
+                                <td class="num">AES-128bit</td>
+                                <td class="num">AES-256bit</td>
+                                <td class="num">AES-256bit</td>
+                            </tr>
+                            <tr>
+                                <td class="features">Change profile picture</td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Sherlocker access <i class="fa fa-info-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Unlimited credentials <i class="fa fa-info-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="features">Custom encryption key <i class="fa fa-info-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

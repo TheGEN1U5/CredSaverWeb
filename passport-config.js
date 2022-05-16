@@ -14,7 +14,7 @@ function initialize(passport, getUserByEmail, getUserByid){
             if  (await bcrypt.compare(password, user.password)) {
                 return done(null, user)
             } else{
-                return done(null, false, {message: 'Password incorrect'})
+                return done(null, false, {message: 'Password incorrect <a href="/forgot-password">Forgot Password?</a>'})
             }
         } catch (e){
             return done(e)

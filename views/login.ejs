@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
-    <script>  
-        $(window).on('load', function () {  
-            $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
-        });  
-    </script> 
+    <link rel="stylesheet" href="/css/loader.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/js/loader.js"></script>
 </head>
 <body>
     <div class="wrapper-wrapper">
@@ -36,21 +33,20 @@
         <div class="wrapper-inner">
             <h1>Login</h1>
             <% if (messages.error) { %>
-                <%= messages.error %>
+                <%- messages.error %>
             <% } %>
             <form action="/login" method="post">
                 <table>
                     <tr>
-                        <td><label for="email">Email</label></td>
-                        <td><input type="email" name="email" id="email" required></td>
+                        <td class="label"><label for="email">Email</label></td>
+                        <td class="field"><input type="email" name="email" id="email" required></td>
                     </tr>
                     <tr>
                         <td><label for="password">Password</label></td>
-                        <td><input type="password" name="password" id="password" required></td>
+                        <td class="field"><input type="password" name="password" id="password" required></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td> <button type="submit">Login</button></td>
+                        <td colspan="2" class="go-btn-cell"> <button type="submit">Login</button></td>
                     </tr>
                 </table>
             </form><br><br>

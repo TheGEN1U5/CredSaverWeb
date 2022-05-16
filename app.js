@@ -45,8 +45,6 @@ const decrypt = (encrypted, key, iv)=>{
 
 //test area
 
-
-
 //
 
 
@@ -283,7 +281,9 @@ promise.then((array) =>{
                     name: req.body.name,
                     email: req.body.email,
                     password: hashedPwd,
-                    type: 'users'
+                    type: 'users',
+                    age: 18,
+                    tier: 'glass'
                 }
             users.push(newUser)
             main(newUser, false, false)
@@ -403,6 +403,56 @@ promise.then((array) =>{
         updatedUser.password = updatedPass
         main(false,false,[user._id,updatedUser])
         res.redirect('/login')
+    })
+    app.post('/update-password-login',async (req,res)=>{
+        var usermail = req.body.mail
+        var newpass = req.body.new_pass
+        var oldpass = req.body.old_pass
+        var user = findUserByMail(usermail,users)
+        // bcrypt.compare(oldpass, user.password, function(err, resp) {
+        //     if (err){
+        //         console.log(err)
+        //     }
+        //     if (resp){
+        //         var updatedPass = bcrypt.hash(newpass, 10)
+        //         updatedUser = findUserByMail(usermail,users)
+        //         updatedUser.password = updatedPass
+        //         main(false,false,[user._id,updatedUser])
+        //         res.render('login.ejs',{messages : {error:'Password changed successfully! <br> Login again to continue.'}})
+        //     }else{
+        //         imgModel.find({_id: req.user._id}, (err, items) => {
+        //             if(err){
+        //                 console.log(err)
+        //             }else if(items.length==0) {
+        //                 imgModel.find({_id:'generalImg'},(err,itemsNew)=>{
+        //                     res.render('done.ejs',{image:itemsNew[0] , user:req.user , message : 'Password Incorrect. Please try again.'})
+        //                 })
+        //             }else{
+        //                 res.render('done.ejs',{image:items[0] , user:req.user , message : 'Password Incorrect. Please try again.'})
+        //             }
+        //         });
+        //     }
+        //   });
+        if (await bcrypt.compare(oldpass, user.password)){
+            var updatedPass = await bcrypt.hash(newpass, 10)
+            updatedUser = findUserByMail(usermail,users)
+            updatedUser.password = updatedPass
+            main(false,false,[user._id,updatedUser])
+            res.render('login.ejs',{messages : {error:'Password changed successfully! Login again to continue.'}})
+        }else{
+            imgModel.find({_id: req.user._id}, (err, items) => {
+                if(err){
+                    console.log(err)
+                }else if(items.length==0) {
+                    imgModel.find({_id:'generalImg'},(err,itemsNew)=>{
+                        res.render('done.ejs',{image:itemsNew[0] , user:req.user , message : 'Password Incorrect. Please try again.'})
+                    })
+                }else{
+                    res.render('done.ejs',{image:items[0] , user:req.user , message : 'Password Incorrect. Please try again.'})
+                }
+            });
+        }
+        
     })
     //ToDo:- done
     app.post('/upload', upload.single('image'), (req, res, next) => {

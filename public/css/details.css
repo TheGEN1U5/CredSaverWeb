@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 html{
     scroll-behavior: smooth;
@@ -23,6 +24,7 @@ body{
     width: 70vw;
     margin-left: 20vw;
     padding-left: 2vw;
+    font-size: 1.75vw;
 }
 .image{
     display: flex;
@@ -138,10 +140,11 @@ body{
     margin-top: 5%;
 }
 .overlay-img{
-    display: none;
+    display: flex;
+    background-color: black;
     z-index: 1001;
     -moz-opacity: 0.8;
-    opacity: .80;
+    opacity: 0;
     filter: alpha(opacity=80);
     position: absolute;
     aspect-ratio: 1/1;
@@ -154,11 +157,10 @@ body{
     color: white;
     font-size: 5vw;
     cursor: pointer;
+    transition: 400ms ease-in-out;
 }
 .image:hover .overlay-img{
-    display: flex;
-    background-color: black;
-    transition: 5s ease-in-out;
+    opacity: 0.80;
 }
 .icons{
     margin-right: 1.5vw;
@@ -172,4 +174,39 @@ body{
     font-weight: 700;
     margin-left: 0.5vw;
     transition: 250ms ease-out;
+}
+.hidden{
+    display: none;
+}
+.f-yes{
+    color: rgb(22, 163, 0);
+}
+.f-no{
+    color: rgb(148, 0, 0);
+}
+.num{
+    font-family: 'Lato', sans-serif;
+}
+table{
+    width: 73vw;
+}
+table,th,td{
+    border-collapse: collapse;
+    border: 1px solid rgb(92, 92, 92);
+}
+tr th{
+    background-color: rgb(189, 189, 189);
+}
+th,td{
+    text-align: center;
+    padding: 1vw;
+}
+.features{
+    text-align: left;
+}
+td{
+    width: 9vw;
+}
+.features{
+    width: 21vw;
 }
