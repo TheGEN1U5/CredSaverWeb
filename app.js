@@ -91,7 +91,7 @@ var storage = multer.diskStorage({
     
 var upload = multer({ storage: storage });
 
-async function main(userC, allR, passU){
+async function main(userC, allR, passU, userU){
 
     const uri = "mongodb+srv://GEN1U5:Tanishq8@cluster0.0ue7b.mongodb.net/CredSaver?retryWrites=true&w=majority";
     const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true });
@@ -113,6 +113,10 @@ async function main(userC, allR, passU){
     }else if(passU){
         const result = await client.db("CredSaver").collection("users").updateOne({ _id: passU[0] }, {$set : passU[1]})
         console.log(`${result.matchedCount} credential matched the criteria and ${result.modifiedCount} credential was updated.`)
+    }else if(userU){
+        var object = userU[1]
+        const result = await client.db("CredSaver").collection("users").updateOne({ _id: userU[0] }, {$set : object})
+        console.log(`${result.matchedCount} user matched the criteria and ${result.modifiedCount} user was updated.`)
     }
 }
 
@@ -244,6 +248,27 @@ promise.then((array) =>{
             });
         })
     })
+    app.put('/dashboard/updateuser/:id', (req,res)=>{
+        console.log(req.body)
+        id = req.params.id
+        updatedUser = req.body
+        updatedUser.email = req.user.email
+        updatedUser.type = "users"
+        updatedUser.password = req.user.password
+        console.log(updatedUser)
+        imgModel.find({_id: req.user._id}, (err, items) => {
+            if(err){
+                console.log(err)
+            }else if(items.length==0) {
+                imgModel.find({_id:'generalImg'},(err,itemsNew)=>{
+                    res.render('done.ejs',{image:itemsNew[0] , user:req.user , message : 'User updated successfully!'})
+                })
+            }else{
+                res.render('done.ejs',{image:items[0] , user:req.user , message : 'User updated successfully!'})
+            }
+        });
+        main(false,false,false,[id,updatedUser])
+    })
     app.get('/register', checkNotAuthenticated, (req,res) => {
         res.render('register.ejs')
     })
@@ -321,6 +346,7 @@ promise.then((array) =>{
         id = req.params.id
         updatedCred = req.body
         updatedCred.type = req.user._id
+        console.log(updatedCred)
         imgModel.find({_id: req.user._id}, (err, items) => {
             if(err){
                 console.log(err)

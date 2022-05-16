@@ -1,4 +1,117 @@
-Hi <%- user.name %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../public/css/details.css"> -->
+    <link rel="stylesheet" href="/css/details.css">
+    <script src="js/jquery.min.js"></script>
+    <link class="jsbin" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <script src="/js/details.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="back">
+                <a href="/"><i class="fa fa-long-arrow-left"></i></a>
+            </div>
+            <div class="image">
+                <div class="overlay-img" onclick= "document.getElementById('upload').style.display='block'; document.getElementById('fade').style.display='block'">
+                    <div class="edit-button">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                </div>
+                <!-- <img src="../public/images/user.png" alt="" srcset="" class="user-img"> -->
+                <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>">
+                
+            </div>
+            <br><div class="name"> <%- user.name %></div>
+            <div class="links">
+                <ul>
+                    <li id="profile-link" class="active"><a href="#profile" onclick="makeActive('profile')"><span class="icons"><i class="fa fa-user"></i></span> Profile</a></li>
+                    <li id="security-link"><a href="#security" onclick="makeActive('security')"><span class="icons"><i class="fa fa-shield"></i></span> Security</a></li>
+                    <li id="upgrade-link"><a href="#upgrade" onclick="makeActive('upgrade')"><span class="icons"><i class="fa fa-level-up"></i></span>&nbsp; Upgrade</a></li>
+                    <li>
+                        <form action="/logout?_method=DELETE" method="post">
+                            <a href="" onclick="this.closest('form').submit();return false;">
+                                <span class="icons"><i class="fa fa-sign-out"></i></span> Log out
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="profile">
+                <h1 class="heading" id="profile">Profile</h1>
+                <form action="/dashboard/updateuser/<%- user._id %>?_method=PUT" method="POST">
+                    <label for="name">Full Name: </label><input type="text" name="name" id="name" value="<%- user.name %>"><br>
+                    <label for="age">Your Age: </label><input type="number" name="age" id="age" value="<%- user.age %>"><br>
+                    <label for="email">Your Email: </label><input type="email" name="email" id="email" value="<%- user.email %>" readonly><br>
+                    <label for="gender">Your Gender:</label>
+                    <label for="male">Male</label><input type="radio" name="gender" id="male" value="male" <% if (user.gender == 'male') { %> checked <% } %> >
+                    <label for="female">Female</label><input type="radio" name="gender" id="female" value="female">
+                    <label for="other">Custom/Rather Not Say</label><input type="radio" name="gender" id="other" value="other">
+                    <input type="submit" id="submit" value="Update Profile">
+                </form>
+                
+            </div>
+            <div class="security" id="security">
+                <h1 class="heading">Security</h1>
+            </div>
+            <div class="upgrade" id="upgrade">
+                <h1 class="heading">Upgrade</h1>
+                You are a member of 
+                <% if (user.tier == 'glass'){ %> 
+                    Glass (Free)
+                <% }else if (user.tier == 'bronze') { %>
+                    Bronze (Beginner)
+                <% }else if (user.tier == 'silver') { %>
+                    Silver (Premium)
+                <% }else if (user.tier == 'golden') { %>
+                    Golden (Professional)
+                <% } %>
+                Tier.
+                <a href="/pricing">Upgrade</a> today to get more out of CredSaver
+                <br>Compare the features of below given plans:
+                <!-- TODO:- make table here -->
+            </div>
+        </div>
+    </div>
+    <div id="fade" class="black_overlay" style="height: 100%; position: fixed;"></div>
+
+    <div class="upload-wrapper">
+        <div class="upload" id="upload">
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input class="button" type="file" name="image" id="image" onchange="readURL(this);" style="border: none;">
+                <input type="text" name='id' style="display: none;" value="<%- user._id %>">
+                <br><img id="imgUploaded" src="#" alt="Your image shows up here">
+                <div class="actions">
+                    <button class="button update" type="submit">
+                        Upload
+                    </button>
+                    <div class="update-wrapper">
+                        <button type="reset" class="button close" onclick="document.getElementById('upload').style.display='none'; document.getElementById('fade').style.display='none'">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+<!-- Hi <%- user.name %>
 
 <form action="/logout?_method=DELETE" method="post">
     <button type="submit">
@@ -13,4 +126,4 @@ Hi <%- user.name %>
 <h1>Uploaded Images</h1>
 <div>
     <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>">
-</div>
+</div> -->
