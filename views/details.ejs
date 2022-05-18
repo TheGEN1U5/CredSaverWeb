@@ -68,30 +68,88 @@
             <div class="profile">
                 <h1 class="heading" id="profile">Profile</h1>
                 <form action="/dashboard/updateuser/<%- user._id %>?_method=PUT" method="POST">
-                    <label for="name">Full Name: </label><input type="text" name="name" id="name" value="<%- user.name %>"><br>
-                    <label for="age">Your Age: </label><input type="number" name="age" id="age" value="<%- user.age %>"><br>
-                    <label for="email">Your Email: </label><input type="email" name="email" id="email" value="<%- user.email %>" readonly><br>
-                    <label for="gender">Your Gender:</label>
-                    <label for="male">Male</label><input type="radio" name="gender" id="male" value="male" <% if (user.gender == 'male') { %> checked <% } %> >
-                    <label for="female">Female</label><input type="radio" name="gender" id="female" value="female">
-                    <label for="other">Custom/Rather Not Say</label><input type="radio" name="gender" id="other" value="other">
-                    <input type="submit" id="submit" value="Update Profile">
+                    <table class="tableE">
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="name">Full Name: </label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="text" name="name" id="name" value="<%- user.name %>">
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="age">Year Of Birth: </label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="number" name="yob" id="yob" value="<%- user.yob %>" min="1922" max="2021">
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="email">Your Email: </label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="email" name="email" id="email" value="<%- user.email %>" readonly class="marginB">
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="gender">Your Gender:</label>
+                            </td>
+                            <td class="tdE field">
+                                <label class="gender-label" for="male">Male</label><input type="radio" name="gender" id="male" value="male" <% if (user.gender == 'male') { %> checked <% } %> >
+                                <label class="gender-label" for="female">Female</label><input type="radio" name="gender" id="female" value="female" <% if (user.gender == 'female') { %> checked <% } %>>
+                                <label class="gender-label" for="other">Custom</label><input type="radio" name="gender" id="other" value="other" <% if (user.gender == 'other') { %> checked <% } %>>
+                            </td>
+                        </tr>
+                            <td class="tdE submit-cell" colspan="2">
+                                <input type="submit" id="submit" value="Update Profile">
+                            </td>
+                        </tr>
+                    </table>
                 </form>
                 
             </div>
             <div class="security">
                 <h1 class="heading" id="security">Security</h1>
                 <form action="/update-password-login" method="post">
-                    <label for="old_pass">Your Current Password: </label>
-                    <input type="password" name="old_pass" required id="old_pass"><br>
-                    <label for="new_pass">Enter New Password: </label>
-                    <input type="password" name="new_pass" required id="new_pass" onkeyup="verifyPassword()"><br>
-                    <span class="message" id="messageV"></span><br>
-                    <label for="r_new_pass">Confirm New Password</label>
-                    <input type="password" name="r_new_pass" required id="r_new_pass" onkeyup="confirmPassword()"><br>
-                    <span class="message" id="messageC"></span><br>
-                    <input type="text" name="mail" id="mail" value="<%- user.email %>" class="hidden">
-                    <button type="submit" id="submit-btn">Change Password</button>
+                    <table class="tableE">
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="old_pass">Your Current Password: </label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="password" name="old_pass" required id="old_pass">
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="new_pass">Enter New Password: </label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="password" name="new_pass" required id="new_pass" onkeyup="verifyPassword()">
+                                <span class="message" id="messageV"></span>
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE label">
+                                <label for="r_new_pass">Confirm New Password</label>
+                            </td>
+                            <td class="tdE field">
+                                <input type="password" name="r_new_pass" required id="r_new_pass" onkeyup="confirmPassword()">
+                                <span class="message" id="messageC" class="marginB"></span>
+                                <input type="text" name="mail" id="mail" value="<%- user.email %>" class="hidden">
+                            </td>
+                        </tr>
+                        <tr class="trE">
+                            <td class="tdE submit-cell" colspan="2">
+                                <input type="submit" id="submit-btn" value="Change Password" class="ch-pw">
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
                 </form>
             </div>
             <div class="upgrade">
@@ -112,65 +170,65 @@
                 <!-- TODO:- make table here -->
 
                 <div class="table-wrapper">
-                    <table>
+                    <table class="tableP">
                         <thead>
-                            <tr>
-                                <th class="empty"></th>
-                                <th>Glass</th>
-                                <th>Bronze</th>
-                                <th>Silver</th>
-                                <th>Gold</th>
+                            <tr class="trP">
+                                <th class="empty thP"></th>
+                                <th class="thP">Glass</th>
+                                <th class="thP">Bronze</th>
+                                <th class="thP">Silver</th>
+                                <th class="thP">Gold</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="features">Annual Cost* (INR)</td>
-                                <td><strong>Free Forever</strong></td>
-                                <td class="num"><strong>&#8377; 199</strong></td>
-                                <td class="num"><strong>&#8377; 399</strong></td>
-                                <td class="num"><strong>&#8377; 699</strong></td>
+                            <tr class="trP">
+                                <td class="tdP features">Annual Cost* (INR)</td>
+                                <td class="tdP"><strong>Free Forever</strong></td>
+                                <td class="tdP num"><strong>&#8377; 199</strong></td>
+                                <td class="tdP num"><strong>&#8377; 399</strong></td>
+                                <td class="tdP num"><strong>&#8377; 699</strong></td>
                             </tr>
-                            <tr>
-                                <td class="features">Number of credentials you can save</td>
-                                <td class="num">10</td>
-                                <td class="num">50</td>
-                                <td><strong>Unlimited</strong></td>
-                                <td><strong>Unlimited</strong></td>
+                            <tr class="trP">
+                                <td class="tdP features">Number of credentials you can save</td>
+                                <td class="tdP num">10</td>
+                                <td class="tdP num">50</td>
+                                <td class="tdP"><strong>Unlimited</strong></td>
+                                <td class="tdP"><strong>Unlimited</strong></td>
                             </tr>
-                            <tr>
-                                <td class="features">Encryption method</td>
-                                <td class="num">AES-128bit</td>
-                                <td class="num">AES-128bit</td>
-                                <td class="num">AES-256bit</td>
-                                <td class="num">AES-256bit</td>
+                            <tr class="trP">
+                                <td class="tdP features">Encryption method</td>
+                                <td class="tdP num">AES-128bit</td>
+                                <td class="tdP num">AES-128bit</td>
+                                <td class="tdP num">AES-256bit</td>
+                                <td class="tdP num">AES-256bit</td>
                             </tr>
-                            <tr>
-                                <td class="features">Change profile picture</td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            <tr class="trP">
+                                <td class="tdP features">Change profile picture</td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
                             </tr>
-                            <tr>
-                                <td class="features">Sherlocker access <i class="fa fa-info-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            <tr class="trP">
+                                <td class="tdP features">Sherlocker access <i class="fa fa-info-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
                             </tr>
-                            <tr>
-                                <td class="features">Unlimited credentials <i class="fa fa-info-circle"></i></td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            <tr class="trP">
+                                <td class="tdP features">Unlimited credentials <i class="fa fa-info-circle"></i></td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
                             </tr>
-                            <tr>
-                                <td class="features">Custom encryption key <i class="fa fa-info-circle"></i></td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-no"><i class="fa fa-times-circle"></i></td>
-                                <td class="f-yes"><i class="fa fa-check-circle"></i></td>
+                            <tr class="trP">
+                                <td class="tdP features">Custom encryption key <i class="fa fa-info-circle"></i></td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-no"><i class="fa fa-times-circle"></i></td>
+                                <td class="tdP f-yes"><i class="fa fa-check-circle"></i></td>
                             </tr>
                         </tbody>
                     </table>

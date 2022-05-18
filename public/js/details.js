@@ -71,7 +71,7 @@ function confirmPassword(){
 }
 window.onload = function(){
     //Observer 1                
-    const elems1 = document.querySelectorAll('.profile');
+    const elems1 = document.querySelectorAll('#profile');
 
     observer1 = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -88,7 +88,7 @@ window.onload = function(){
     });
 
     //Observer2
-    const elems2 = document.querySelectorAll('.security');
+    const elems2 = document.querySelectorAll('#security');
     observer2 = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.intersectionRatio > 0) {
@@ -104,7 +104,7 @@ window.onload = function(){
     });
 
     //Observer3
-    const elems3 = document.querySelectorAll('.upgrade');
+    const elems3 = document.querySelectorAll('#upgrade');
     observer3 = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.intersectionRatio > 0) {

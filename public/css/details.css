@@ -187,26 +187,94 @@ body{
 .num{
     font-family: 'Lato', sans-serif;
 }
-table{
+.tableP{
     width: 73vw;
 }
-table,th,td{
+.tableP,.thP,.tdP{
     border-collapse: collapse;
     border: 1px solid rgb(92, 92, 92);
 }
-tr th{
+.trP .thP{
     background-color: rgb(189, 189, 189);
 }
-th,td{
+.thP,.tdP{
     text-align: center;
     padding: 1vw;
 }
 .features{
     text-align: left;
 }
-td{
+.tdP{
     width: 9vw;
 }
 .features{
     width: 21vw;
+}
+.message{
+    font-size: 1.2vw;
+    color: rgb(210, 0, 0);
+}
+form{
+    width: 100%;
+}
+.tableE{
+    width: 100%;
+}
+.label{
+    width: 30%;
+}
+.field{
+    float: right;
+    width: 70%;
+}
+.submit-cell{
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+    width: 100%;
+    height: fit-content;
+}
+.field :not(input[type="radio"],.gender-label,.message){
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    background-color: rgb(255, 229, 165);
+    width: 100%;
+    margin-top: 0.6vw;
+    border: 0.2vw solid black;
+    border-radius: 0.5vw;
+    padding: 0.4vw;
+    transition: 200ms ease-in-out;
+}
+.field :not(input[type="radio"],.gender-label,.message):focus , .field :not(input[type="radio"],.gender-label,.message):hover{
+    outline: none;
+    background-color: rgb(255, 199, 13);
+}
+input[type="submit"]{
+    /* -webkit-appearance: none;
+    appearance: none; */
+    font: inherit;
+    position: absolute;
+    left: 69.3%;
+    transform: translateX(-69.3%);
+    background-color: rgb(232, 140, 98);
+    border-radius: 1vw;
+    border: 0.2vw solid black;
+    font-weight: 600;
+    padding: 0.5vw;
+    margin-top: 1vw;
+}
+input[type="submit"]:hover, input[type="submit"]:focus{
+    background-color: rgb(255, 99, 72);
+}
+input[type="radio"]{
+    cursor: pointer;
+}
+.marginB{
+    margin-bottom: 0.6vw;
+}
+.ch-pw{
+    position: absolute !important;
+    left: 52% !important;
+    transform: translateX(52%) !important;
 }
