@@ -16,15 +16,16 @@ header{
     border-bottom: 2px solid black;
 }
 header .logo{
-    height: 80px;
+    height: 95px;
     display: flex;
     align-items: center;
     
 }
 header .logo .section-title{
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-top: 12px;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 600;
     color: #011485;
 }
