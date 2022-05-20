@@ -1,0 +1,20 @@
+:root{
+    --whiteBG: #F2F6F6; 
+    --white: #F2F6F6;
+    --yellow: rgb(255, 225, 0);
+    --darkBlue: #011485;
+    --darkYellow: rgb(184, 169, 54);
+    --grey: #646d73;
+    --blue: rgb(73, 73, 220);
+    --yellowHover: rgb(202, 183, 32);
+    --black: rgb(0, 0, 0);
+    --tableBorderGrey: rgb(92, 92, 92);
+    --tableBgGrey: rgb(189, 189, 189);
+    --messageRed: rgb(210, 0, 0);
+    --fieldYellow: rgb(255, 229, 165);
+    --fieldYellowHover: rgb(255, 199, 13);
+    --link: blue;
+}
+body{
+    transition: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) background-color;
+}

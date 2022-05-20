@@ -8,7 +8,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
-    background-color: #F2F6F6;
+    background-color: var(--whiteBG);
 }
 .wrapper{
     display: flex;
@@ -25,6 +25,7 @@ body{
     margin-left: 20vw;
     padding-left: 2vw;
     font-size: 1.75vw;
+    color: var(--black);
 }
 .image{
     display: flex;
@@ -32,6 +33,7 @@ body{
     align-items: center;
 }
 .sidebar .name{
+    color: var(--black);
     font-size: 2.5vw;
     font-weight: 700;
     text-align: center;
@@ -51,7 +53,7 @@ body{
     position: fixed;
 }
 .back a{
-    color: black;
+    color: var(--black);
 }
 .heading{
     font-size: 3vw;
@@ -61,7 +63,7 @@ body{
     font-size: 1.85vw;
 }
 .links li a{
-    color: rgb(101, 101, 101);
+    color: var(--grey);
     text-decoration: none;
 }
 .links li{
@@ -76,7 +78,7 @@ body{
     padding: 20px;
     border: 10px solid rgb(158, 140, 1);
     border-radius: 20px;
-    background-color: white;
+    background-color: var(--whiteBG);
     z-index: 1002;
     overflow: auto;
     font-size: 20px;
@@ -128,7 +130,7 @@ body{
     height: fit-content;
     padding: 5px;
     border: 1px solid black;
-    color: black;
+    color:black;
 }
 .actions{
     display: flex;
@@ -169,7 +171,7 @@ body{
     height: 101vh;
 }
 .active a{
-    color: black !important;
+    color: var(--black) !important;
     font-size: 2.25vw;
     font-weight: 700;
     margin-left: 0.5vw;
@@ -192,10 +194,10 @@ body{
 }
 .tableP,.thP,.tdP{
     border-collapse: collapse;
-    border: 1px solid rgb(92, 92, 92);
+    border: 1px solid var(--tableBorderGrey);
 }
 .trP .thP{
-    background-color: rgb(189, 189, 189);
+    background-color: var(--tableBgGrey);
 }
 .thP,.tdP{
     text-align: center;
@@ -212,7 +214,7 @@ body{
 }
 .message{
     font-size: 1.2vw;
-    color: rgb(210, 0, 0);
+    color: var(--messageRed);
 }
 form{
     width: 100%;
@@ -238,7 +240,7 @@ form{
     -webkit-appearance: none;
     appearance: none;
     font: inherit;
-    background-color: rgb(255, 229, 165);
+    background-color: var(--fieldYellow);
     width: 100%;
     margin-top: 0.6vw;
     border: 0.2vw solid black;
@@ -248,7 +250,7 @@ form{
 }
 .field :not(input[type="radio"],.gender-label,.message):focus , .field :not(input[type="radio"],.gender-label,.message):hover{
     outline: none;
-    background-color: rgb(255, 199, 13);
+    background-color: var(--fieldYellowHover);
 }
 input[type="submit"]{
     /* -webkit-appearance: none;
@@ -277,4 +279,19 @@ input[type="radio"]{
     position: absolute !important;
     left: 52% !important;
     transform: translateX(52%) !important;
+}
+.theme{
+    margin-top: 110px;
+    width: 100%;
+}
+.theme-btn{
+    float: right;
+    border-radius: 50%;
+    border: 4px solid var(--black);
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

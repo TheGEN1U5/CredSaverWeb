@@ -11,6 +11,15 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/js/loader.js"></script>
     <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
+      
+    <!-- DarkMode -->
+    <link rel="stylesheet" href="/css/colors.css">
+    <script src="/js/darkMode.js"></script>
+    <script>
+        var isDarkModeCurrent = JSON.parse(localStorage.getItem("theme")).isDarkMode
+        console.log(isDarkModeCurrent)
+        toggleDarkMode(isDarkModeCurrent)
+    </script>
 </head>
 <body>
     <div class="wrapper-wrapper">
@@ -34,6 +43,7 @@
     <header>
         <div class="logo">
             <img src="/images/logo.png" alt="logo" srcset="">
+            <span class="section-title">CredSaver</span>
         </div>
         <!-- <div class="searchbar">
             <input type="text" placeholder="Search My Credentials">

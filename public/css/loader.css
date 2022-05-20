@@ -43,7 +43,7 @@
 .wrapper-wrapper{
     display: flex;
     position: absolute;
-    background-color: #F2F6F6;
+    background-color: var(--whiteBG);
     width: 100%;
     height: 100%;
     z-index: 1000;
@@ -91,7 +91,7 @@
     width: 50px;
     border-radius: 30px;
     z-index: 20;
-    background-color: #F2F6F6;
+    background-color: var(--whiteBG);
     position: relative;
     margin: 0 auto;
     top: 25px;
@@ -104,7 +104,7 @@
     position: relative;
     height: 50px;
     width: 50px;
-    background-color: #F2F6F6;
+    background-color: var(--whiteBG);
     bottom: 230px;
     left: 170px;
     z-index: 80;

@@ -10,6 +10,15 @@
     <script src="/js/loader.js"></script>
     <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
+    
+    <!-- DarkMode -->
+    <link rel="stylesheet" href="/css/colors.css">
+    <script src="/js/darkMode.js"></script>
+    <script>
+        var isDarkModeCurrent = JSON.parse(localStorage.getItem("theme")).isDarkMode
+        console.log(isDarkModeCurrent)
+        toggleDarkMode(isDarkModeCurrent)
+    </script>
 </head>
 <body>
     <div class="wrapper-wrapper">

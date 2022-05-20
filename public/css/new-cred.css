@@ -5,7 +5,7 @@
     align-items: center;
 }
 input{
-    background-color: rgb(255, 229, 165);
+    background-color: var(--fieldYellow);
     height: 30px;
     width: 70%;
     margin-top: 20px;
@@ -20,7 +20,7 @@ input::placeholder{
 }
 input:focus , input:hover{
     outline: none;
-    background-color: rgb(255, 199, 13);
+    background-color: var(--fieldYellowHover);
 }
 .submit-btn{
     background-color: rgb(232, 140, 98);
