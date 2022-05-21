@@ -9,6 +9,10 @@ window.onload = () =>{
     }
     var noCred = document.getElementById('notfound')
     noCred.style.display = 'none'
+    setTimeout(() => {
+        document.querySelector('.wrapper-wrapper').style.visibility = "hidden";
+        document.querySelector('.wrapper-wrapper').style.opacity = "0";
+    }, 2000);
 }
 hideShowfunc = () => {
     var pwdList = document.getElementsByClassName('pwdBox')

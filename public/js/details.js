@@ -69,55 +69,52 @@ function confirmPassword(){
         
     }
 }
-window.onload = function(){
-    //Observer 1                
-    const elems1 = document.querySelectorAll('#profile');
 
-    observer1 = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-                document.getElementById("profile-link").classList.add('active');
-                document.getElementById("security-link").classList.remove('active');
-                document.getElementById("upgrade-link").classList.remove('active');
-            }
-        });
+//Observer 1                
+const elems1 = document.querySelectorAll('#profile');
+
+observer1 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+            document.getElementById("profile-link").classList.add('active');
+            document.getElementById("security-link").classList.remove('active');
+            document.getElementById("upgrade-link").classList.remove('active');
+        }
     });
+});
 
-    elems1.forEach(text => {
-        observer1.observe(text);
+elems1.forEach(text => {
+    observer1.observe(text);
+});
+
+//Observer2
+const elems2 = document.querySelectorAll('#security');
+observer2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+            document.getElementById("profile-link").classList.remove('active');
+            document.getElementById("security-link").classList.add('active');
+            document.getElementById("upgrade-link").classList.remove('active');
+        }
     });
+});
 
-    //Observer2
-    const elems2 = document.querySelectorAll('#security');
-    observer2 = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-                document.getElementById("profile-link").classList.remove('active');
-                document.getElementById("security-link").classList.add('active');
-                document.getElementById("upgrade-link").classList.remove('active');
-            }
-        });
+elems2.forEach(text => {
+    observer2.observe(text);
+});
+
+//Observer3
+const elems3 = document.querySelectorAll('#upgrade');
+observer3 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+            document.getElementById("profile-link").classList.remove('active');
+            document.getElementById("security-link").classList.remove('active');
+            document.getElementById("upgrade-link").classList.add('active');
+        }
     });
+});
 
-    elems2.forEach(text => {
-        observer2.observe(text);
-    });
-
-    //Observer3
-    const elems3 = document.querySelectorAll('#upgrade');
-    observer3 = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-                document.getElementById("profile-link").classList.remove('active');
-                document.getElementById("security-link").classList.remove('active');
-                document.getElementById("upgrade-link").classList.add('active');
-            }
-        });
-    });
-
-    elems3.forEach(text => {
-        observer3.observe(text);
-    });
-}
-
-
+elems3.forEach(text => {
+    observer3.observe(text);
+});

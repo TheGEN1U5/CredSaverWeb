@@ -6,15 +6,7 @@
     <title>CredSaver</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/loader.css">
-    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/loader.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(window).on('load', function () {  
-                $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
-            });
-        })
-    </script>
     <script src="https://kit.fontawesome.com/7d37d5d745.js" crossorigin="anonymous"></script>
     <script src="/js/index.js"></script>
     
@@ -67,7 +59,7 @@
         </div>
     </header>
     <main>
-        <p id="notfound">
+        <p id="notfound" class="messageDone">
             No credentials found!
         </p>
         <div id="fade" class="black_overlay" style="height: 100%; position: fixed;"></div>

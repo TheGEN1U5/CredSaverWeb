@@ -1,5 +1,6 @@
-$(document).ready(function(){
-    $(window).on('load', function () {  
-        $(".wrapper-wrapper").delay(1000).fadeOut("slow");  
-    });
-})
+window.onload = () =>{
+    setTimeout(() => {
+        document.querySelector('.wrapper-wrapper').style.visibility = "hidden";
+        document.querySelector('.wrapper-wrapper').style.opacity = "0";
+    }, 2000);
+}
