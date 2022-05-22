@@ -52,10 +52,10 @@ function sendMail(subject,text,to){
 
     var nodemailer = require('nodemailer')
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: "SendinBlue",
         auth: {
             user: 'staff.credsaver@gmail.com',
-            pass: 'Tanishq8'
+            pass: process.env.SMTP_KEY
         }
     })
 
@@ -74,7 +74,7 @@ function sendMail(subject,text,to){
     })
 }
 
-mongoose.connect('mongodb+srv://GEN1U5:Tanishq8@cluster0.0ue7b.mongodb.net/CredSaver?retryWrites=true&w=majority',
+mongoose.connect(process.env.DB_URI,
     { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         console.log('connected')
     });
@@ -91,7 +91,7 @@ var upload = multer({ storage: storage });
 
 async function main(userC, allR, passU, userU){
 
-    const uri = "mongodb+srv://GEN1U5:Tanishq8@cluster0.0ue7b.mongodb.net/CredSaver?retryWrites=true&w=majority";
+    const uri = process.env.DB_URI;
     const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true });
 
     
@@ -120,7 +120,7 @@ async function main(userC, allR, passU, userU){
 
 async function creds(credC, allR, credD, credR , credU){
 
-    const uri = "mongodb+srv://GEN1U5:Tanishq8@cluster0.0ue7b.mongodb.net/CredSaver?retryWrites=true&w=majority";
+    const uri = process.env.DB_URI;
     const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true });
 
     

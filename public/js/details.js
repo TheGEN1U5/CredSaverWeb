@@ -52,9 +52,7 @@ function verifyPassword() {
 function confirmPassword(){
     var submitBtn = document.getElementById("submit-btn")
     var pw1 = document.getElementById("new_pass").value;
-    console.log(pw1)
     var pw2 = document.getElementById("r_new_pass").value;
-    console.log(pw2)
     if(pw1 != pw2){   
         document.getElementById("messageC").innerHTML = "Passwords don't match";
         submitBtn.disabled = true;
