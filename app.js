@@ -476,6 +476,7 @@ promise.then((array) =>{
                     },
                     type: 'img'
                 }
+                fs.unlinkSync(path.join(__dirname + '/uploads/' + req.file.filename))
                 imgModel.create(obj, (err, item) => {
                     if (err) {
                         console.log(err);
@@ -499,6 +500,7 @@ promise.then((array) =>{
                     },
                     type: 'img'
                 }
+                fs.unlinkSync(path.join(__dirname + '/uploads/' + req.file.filename))
                 imgModel.create(obj, (err, item) => {
                     if (err) {
                         console.log(err);
