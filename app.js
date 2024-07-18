@@ -51,27 +51,32 @@ const decrypt = (encrypted, key, iv)=>{
 function sendMail(subject,text,to){
 
     var nodemailer = require('nodemailer')
-    var transporter = nodemailer.createTransport({
-        service: "SendinBlue",
-        auth: {
-            user: 'staff.credsaver@gmail.com',
-            pass: process.env.SMTP_KEY
-        }
-    })
+    // var transporter = nodemailer.createTransport({
+    //     service: "SendinBlue",
+    //     auth: {
+    //         user: 'staff.credsaver@gmail.com',
+    //         pass: process.env.SMTP_KEY
+    //     }
+    // })
 
-    var mailOptions = {
-        from: 'staff.credsaver@gmail.com',
-        to: to,
-        subject: subject,
-        text: text
-    }
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error)
-        }else {
-            console.log('Email sent: ' + info.response)
-        }
-    })
+    // var mailOptions = {
+    //     from: 'staff.credsaver@gmail.com',
+    //     to: to,
+    //     subject: subject,
+    //     text: text
+    // }
+    // transporter.sendMail(mailOptions, function(error, info){
+    //     if (error) {
+    //         console.log(error)
+    //     }else {
+    //         console.log('Email sent: ' + info.response)
+    //     }
+    // })
+    
+
+    // CURRENTY SENDING EMAIL WITHOUT VERIFIED DOMAIN NAME IS NOT ALLOWED BY ANY PROVIDER
+    // FORGOT PASSWORD HAS BEEN DISCONTINUED UNTIL A DOMAIN NAME IS ACQUIRED AND VERIFIED.
+    // PREFERRED PROVIDER IS 1. SPARKPOST 2. MAILTRAP
 }
 
 mongoose.connect(process.env.DB_URI,
@@ -207,10 +212,12 @@ promise.then((array) =>{
     app.use(bodyParser.json())
     
     
-    app.delete('/logout', (req, res) => {
-        req.logOut()
-        res.redirect('/')
-    })
+    app.delete('/logout', function(req, res, next) {
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/');
+        });
+      });
     app.get('/' , checkNotAuthenticated , (req,res)=>{
         res.render('landing.ejs')
     })

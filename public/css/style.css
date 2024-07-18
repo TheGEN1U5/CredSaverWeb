@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 body{
     font-family: 'Lexend', sans-serif;
-    background: rgb(0,255,196);
-    background: radial-gradient(circle, rgba(0,255,196,1) 9%, rgba(98,252,70,1) 76%, rgba(221,251,76,1) 99%);   
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgb(246, 238, 129) 9%, rgb(245, 239, 163) 76%, rgb(246, 243, 205) 99%);   
     margin: 0;
     padding: 0;
     background-repeat: repeat-y;
@@ -16,14 +17,14 @@ body{
     padding: 30px;
 }
 .wrapper-inner{
-    background: rgba(168, 78, 228, .8);
-    background: linear-gradient(-45deg, rgba(167,78,228,0.8) 9%, rgba(253,130,29,.8) 50%, rgba(153,252,69,.8) 92%);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: rgb(22, 96, 255, 0.8);
+    background: linear-gradient(-45deg, rgb(246, 188, 129, 0.8) 9%, rgba(249, 246, 203, 0.8) 50%, rgba(246, 188, 129, 0.8) 92%);
+    box-shadow: 0 8px 32px 0 rgba(10, 15, 82, 0.37);
     backdrop-filter: blur( 5.0px );
     -webkit-backdrop-filter: blur( 7.0px );
     border-radius: 10px;
     padding: 50px;
-    width: 45%;
+    width: 65%;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -33,26 +34,48 @@ body{
     margin-top: 30px;
 }
 .wrapper-inner h1{
-    font-size: 80px;
+    font-size: 10vh;
     text-align: center;
+    margin-top: 0.2vh;
+    margin-bottom: 7vh;
 }
+.logo{
+    height: 6vh;
+    display: flex;
+    align-items: center;
+}
+.logo .section-title{
+    margin-left: 10px;
+    margin-top: 12px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 6vh;
+    font-weight: 600;
+    color: #011485;
+}
+.logo img{
+    height: 100%;
+}
+
 .wrapper-inner a{
     text-align: center;
 }
 .wrapper-inner button{
     padding:  10px 15px;
-    border-radius: 20px;
-    border: 2px solid black;
+    border-radius: 15px;
+    border: 3px solid black;
     width: 100px;
     margin-top: 20px;
-    background-color: rgb(226, 164, 247);
+    background-color: rgb(22, 96, 255);
     font-weight: 600;
     transition: 200ms ease-in-out;
+    color: white;
+    font: inherit;
+    font-size: 15px;
 }
 .wrapper-inner button:hover , button:focus{
-    background-color: black;
-    border: 2px solid rgb(226, 164, 247);
-    color: rgb(226, 164, 247);
+    background-color: white;
+    border: 3px solid black;
+    color: rgb(22, 96, 255);
     outline: none;
 }
 .wrapper-inner input{
@@ -91,7 +114,11 @@ table{
 }
 @media only screen and (max-width: 768px){
     .wrapper-inner{
-        width: 60%;
+        width: 100%;
+        height: 100%;
+    }
+    .wrapper-inner{
+        font-size: 1.3em;
     }
 }
 @media only screen and (max-width: 425px){
@@ -99,16 +126,19 @@ table{
         background: none;
         font-size: 1.3em;
         margin-bottom: 500px;
+        border: none;
+        box-shadow: none
     }
     body{
-        background: rgba(168, 78, 228, .8);
-        background: linear-gradient(45deg, rgba(167,78,228,0.8) 9%, rgba(253,130,29,.8) 50%, rgba(153,252,69,.8) 92%);
+        background: rgb(255, 255, 255);
+        background: radial-gradient(circle, rgb(246, 238, 129) 9%, rgb(245, 239, 163) 76%, rgb(246, 243, 205) 99%);
     }
     .wrapper{
         height: 100%;
+        ;
     }
     .wrapper-inner h1{
-        font-size: 60px;
+        font-size: 8vh;
     }
 }
 @keyframes unlock-circle {
