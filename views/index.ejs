@@ -52,8 +52,8 @@
             <a href="/userDetails">
                 <div class="loginDetails">
                     <img src="data:image/<%=image.img.contentType%>;base64,<%=image.img.data.toString('base64')%>" alt="" srcset="">
-                    <span class="email"> <%= user.email %> </span>
-                    <span class="name"> <%= user.name %> </span>
+                    <span class="email"> <%- user.email %> </span>
+                    <span class="name"> <%- user.name %> </span>
                 </div>
             </a>
         </div>
@@ -79,25 +79,25 @@
             <% } else{ %>
                 <div class="creds-wrapper">
                     <% credentials.forEach((item, index)=>{ %>
-                        <div class="creds" onclick= "document.getElementById('<%= item.siteName %>').style.display='block'; document.getElementById('fade').style.display='block'">
+                        <div class="creds" onclick= "document.getElementById('<%- item.siteName %>').style.display='block'; document.getElementById('fade').style.display='block'">
                             <div class= "icon">
                                 <i class="fas fa-lock"></i>
                             </div>
                             <div class="sitename">
-                                <%= item.siteName %>
+                                <%- item.siteName %>
                             </div>
                         </div>
                     <% }) %>
                 </div>
                 <div class="cred-details-wrapper">
                     <% credentials.forEach((item, index)=>{ %>
-                        <div class="details" id="<%= item.siteName %>">
+                        <div class="details" id="<%- item.siteName %>">
                             <div class="site-name detail">
                                 <span class="key">
                                     Site Name:
                                 </span>
                                 <span class="value">
-                                    <%= item.siteName %>
+                                    <%- item.siteName %>
                                 </span>
                             </div>
                             <div class="username detail">
@@ -105,7 +105,7 @@
                                     Username: 
                                 </span>
                                 <span class="username">
-                                    <%= item.username %> <br>
+                                    <%- item.username %> <br>
                                 </span>
                             </div>
                             <div class="password detail">
@@ -113,7 +113,7 @@
                                     Password:
                                 </span>
                                 <span class="value" unselectable='on'>
-                                    <input type="password" name="password" id="password" class='pwdBox' value="<%= item.password %>" readonly>
+                                    <input type="password" name="password" id="password" class='pwdBox' value="<%- item.password %>" readonly>
                                     <label for="show-pwd">
                                         <i class="far fa-eye-slash"></i>
                                         <i class="far fa-eye"></i>
@@ -123,19 +123,19 @@
                             </div>
                             
                             <div class="actions">
-                                <form action="/dashboard/<%= item._id %>?_method=DELETE" method="post">
+                                <form action="/dashboard/<%- item._id %>?_method=DELETE" method="post">
                                     <button class="button delete" type="submit">
                                         Delete Password
                                     </button>
                                 </form>
                                 <div class="update-wrapper">
-                                    <button class="button update" onclick="window.location.href='/dashboard/update/<%= item._id %>'">
+                                    <button class="button update" onclick="window.location.href='/dashboard/update/<%- item._id %>'">
                                         Update Credentials
                                     </button>
                                 </div>
                             </div>
                             <div class="close-wrapper">
-                                <button class="button close" onclick="document.getElementById('<%= item.siteName %>').style.display='none'; document.getElementById('fade').style.display='none'">
+                                <button class="button close" onclick="document.getElementById('<%- item.siteName %>').style.display='none'; document.getElementById('fade').style.display='none'">
                                     Close
                                 </button>
                             </div>
